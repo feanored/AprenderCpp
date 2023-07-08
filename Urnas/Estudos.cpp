@@ -2,7 +2,7 @@
 \brief Estudos.cpp : Defines the entry point for the console application.
 \author Eduardo Galvani Massino
 */
-#define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
+//#define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
 #include <iostream>
 #include <conio.h>
 #include "Candidatos.hpp"
@@ -49,7 +49,6 @@ void main_variaveis() {
     std::cout << " Votos para Bozo: " << (++bozo).getVotos() << std::endl;
     std::cout << " Votos para Lula: " << lula++.getVotos() << std::endl;
 }
-
 
 int main() {
     std::cout << "-- Urna eletronica --" << std::endl;
