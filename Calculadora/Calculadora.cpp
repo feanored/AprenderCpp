@@ -1,5 +1,4 @@
 // Calculadora.cpp : main project file.
-
 #include "stdafx.h"
 #include "FormCalc.h"
 
@@ -21,20 +20,19 @@ int main(array<System::String ^> ^args)
 \brief Métodos acessíveis implementados aqui
 */
 namespace Calculadora{
-	System::String^ getTexto(const char* texto) {
-		System::String^ windowsText = gcnew System::String(texto);
-		return windowsText;
+	inline String^ _toWinT(const char* texto) {
+		return gcnew System::String(texto);
 	}
 
-	void aviso(const char* texto) {
-		MessageBox::Show(getTexto(texto), "Aviso", MessageBoxButtons::OK);
+	inline void aviso(const char* texto) {
+		MessageBox::Show(_toWinT(texto), "Aviso", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 	}
 
-	void erro(const char* texto) {
-		MessageBox::Show(getTexto(texto), "Erro", MessageBoxButtons::OK);
+	inline void erro(const char* texto) {
+		MessageBox::Show(_toWinT(texto), "Erro", MessageBoxButtons::OK, MessageBoxIcon::Error);
 	}
 
 	void FormCalc::setDisplay(const char* texto) {
-		this->display->Text = getTexto(texto);
+		this->display->Text = _toWinT(texto);
 	}
 }
