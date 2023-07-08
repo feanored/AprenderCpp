@@ -1,4 +1,5 @@
 #pragma once
+#define _CRT_SECURE_NO_DEPRECATE
 #include "stdafx.h"
 
 namespace Calculadora {
@@ -68,36 +69,19 @@ namespace Calculadora {
 	private: System::Windows::Forms::Button^  btn_back;
 	private: System::Windows::Forms::Button^  btn_pi;
 	private: System::Windows::Forms::Button^  btn_cos;
-
 	private: System::Windows::Forms::Button^  btn_sin;
 	private: System::Windows::Forms::Button^  btn_tan;
-
-
 	private: System::Windows::Forms::Button^  btn_cleare;
-
 	private: System::Windows::Forms::Button^  btn_clear;
 	private: System::Windows::Forms::Button^  btn_asin;
 	private: System::Windows::Forms::Button^  btn_atan;
-
-
-
-
-
 	private: System::Windows::Forms::Button^  btn_acos;
-
 	private: System::Windows::Forms::Button^  btn_exp;
 	private: System::Windows::Forms::Button^  btn_log;
-
-
 	private: System::Windows::Forms::Button^  btn_sqr;
 	private: System::Windows::Forms::Button^  btn_pot;
-
-
 	private: System::Windows::Forms::RadioButton^  rb_rad;
 	private: System::Windows::Forms::RadioButton^  rb_deg;
-
-
-
 
 	protected: 
 
@@ -565,7 +549,7 @@ namespace Calculadora {
 			this->rb_rad->Font = (gcnew System::Drawing::Font(L"Lucida Console", 10.4717F));
 			this->rb_rad->Location = System::Drawing::Point(13, 65);
 			this->rb_rad->Name = L"rb_rad";
-			this->rb_rad->Size = System::Drawing::Size(106, 20);
+			this->rb_rad->Size = System::Drawing::Size(89, 18);
 			this->rb_rad->TabIndex = 35;
 			this->rb_rad->TabStop = true;
 			this->rb_rad->Text = L"radianos";
@@ -577,7 +561,7 @@ namespace Calculadora {
 			this->rb_deg->Font = (gcnew System::Drawing::Font(L"Lucida Console", 10.4717F));
 			this->rb_deg->Location = System::Drawing::Point(13, 90);
 			this->rb_deg->Name = L"rb_deg";
-			this->rb_deg->Size = System::Drawing::Size(76, 20);
+			this->rb_deg->Size = System::Drawing::Size(65, 18);
 			this->rb_deg->TabIndex = 36;
 			this->rb_deg->TabStop = true;
 			this->rb_deg->Text = L"graus";
@@ -631,7 +615,6 @@ namespace Calculadora {
 			this->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->MaximizeBox = false;
 			this->Name = L"FormCalc";
-			this->Opacity = 0.98;
 			this->Text = L"Calculadora";
 			this->TransparencyKey = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(192)), 
 				static_cast<System::Int32>(static_cast<System::Byte>(192)));
@@ -653,13 +636,15 @@ namespace Calculadora {
 			this->rb_rad->Select();
 		}
 		System::Void btn_1_Click(System::Object^  sender, System::EventArgs^  e) {
-			display->Text = "1";
+			setDisplay("1");
 		}
 		System::Void btn_res_Click(System::Object^  sender, System::EventArgs^  e) {
 			setDisplay("Binha");
 		}
 		System::Void btn_pi_Click(System::Object^  sender, System::EventArgs^  e) {
-			erro("A binha não permite o uso do número Pi ainda!");
+			char buffer[20];
+			std::sprintf(buffer, "%.16lf", M_PI);
+			setDisplay(buffer);
 		}
 		System::Void button8_Click(System::Object^  sender, System::EventArgs^  e) {
 		}
@@ -667,6 +652,5 @@ namespace Calculadora {
 		}
 		System::Void button6_Click(System::Object^  sender, System::EventArgs^  e) {
 		}
-};
+	};
 }
-
