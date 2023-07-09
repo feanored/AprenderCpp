@@ -20,19 +20,86 @@ int main(array<System::String ^> ^args)
 \brief Métodos acessíveis implementados aqui
 */
 namespace Calculadora{
-	inline String^ _toWinT(const char* texto) {
+	/////////////////////////
+	// Utilidades - Inicio //
+	/////////////////////////
+	std::string FormCalc::_wCharToString(wchar_t text) {
+		if (text == NULL)
+			return std::string();
+
+		const wchar_t* wideStr = &text;
+		std::size_t size = std::wcstombs(NULL, wideStr, 0);
+		if (size == static_cast<std::size_t>(-1))
+			return std::string();
+
+		char* buffer = new char[size + 1];
+		std::wcstombs(buffer, wideStr, size);
+		buffer[size] = '\0';
+
+		std::string result(buffer);
+		delete[] buffer;
+
+		return result;
+	}
+
+	inline String^ _charToWinT(const char* texto) {
 		return gcnew System::String(texto);
 	}
 
+	inline String^ _stringToWinT(std::string& texto) {
+		return gcnew System::String(texto.c_str());
+	}
+	/////////////////////////
+	// Utilidades - Fim //
+	/////////////////////////
+
+
 	inline void aviso(const char* texto) {
-		MessageBox::Show(_toWinT(texto), "Aviso", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+		MessageBox::Show(_charToWinT(texto), "Aviso", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 	}
 
 	inline void erro(const char* texto) {
-		MessageBox::Show(_toWinT(texto), "Erro", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		MessageBox::Show(_charToWinT(texto), "Erro", MessageBoxButtons::OK, MessageBoxIcon::Error);
 	}
 
 	void FormCalc::setDisplay(const char* texto) {
-		this->display->Text = _toWinT(texto);
+		this->display->Text = _charToWinT(texto);
+	}
+
+	void FormCalc::setDisplay() {
+		this->display->Text = _stringToWinT(getDisplayStack());
+	}
+
+	void pushSymbol(const char* symbol){
+		if (clear) {
+			clearDisplayStack();
+			clear = false;
+		}
+		pushToDisplayStack(string(symbol));
+	}
+
+	void pushSymbol(const char* symbol, bool unico){
+		if (unico) {
+			return;
+		}
+		pushSymbol(symbol);
+	}
+
+	void pushToDisplayStack(const std::string& ch) {
+		std::string display = getDisplayStack();
+		display += ch;
+		setDisplayStack(display);
+	}
+
+	void popRightDisplayStack() {
+
+	}
+
+	void popLeftDisplayStack() {
+
+	}
+
+	void clearDisplayStack() {
+		setDisplayStack(string(""));
 	}
 }
