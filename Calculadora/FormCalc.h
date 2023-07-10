@@ -437,6 +437,7 @@ namespace Calculadora {
 			this->btn_del->TabStop = false;
 			this->btn_del->Text = L"®";
 			this->btn_del->UseVisualStyleBackColor = false;
+			this->btn_del->Click += gcnew System::EventHandler(this, &FormCalc::btn_del_Click);
 			// 
 			// btn_back
 			// 
@@ -449,6 +450,7 @@ namespace Calculadora {
 			this->btn_back->TabStop = false;
 			this->btn_back->Text = L"¬";
 			this->btn_back->UseVisualStyleBackColor = false;
+			this->btn_back->Click += gcnew System::EventHandler(this, &FormCalc::btn_back_Click);
 			// 
 			// btn_pi
 			// 
@@ -731,25 +733,33 @@ namespace Calculadora {
 			textAux->Focus();
 		}
 
+		void setFocusOnText() {
+			this->BeginInvoke(gcnew MethodInvoker(this, &FormCalc::SetFocusOnTextAux));
+		}
+
 		System::Void FormCalc_Load(System::Object^  sender, System::EventArgs^  e) {
 			this->rb_rad->Select();
 			Calculadora::clearDisplayStack();			
 			setDisplay("0");
-			this->BeginInvoke(gcnew MethodInvoker(this, &FormCalc::SetFocusOnTextAux));
+			setFocusOnText();
 		}
 
 		System::Void rb_rad_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 			
+			setFocusOnText();
 		}
 		System::Void rb_deg_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 
+			setFocusOnText();
 		}
 		System::Void btn_res_Click(System::Object^  sender, System::EventArgs^  e) {
 			setDisplay("Binha");
+			setFocusOnText();
 		}
 		System::Void btn_cleare_Click(System::Object^  sender, System::EventArgs^  e) {
 			Calculadora::clearDisplayStack();			
 			setDisplay("0");
+			setFocusOnText();
 		}
 		System::Void btn_pi_Click(System::Object^  sender, System::EventArgs^  e) {
 			char buffer[20];
@@ -757,64 +767,86 @@ namespace Calculadora {
 			setDisplayStack(string(buffer));
 			clear = true;
 			setDisplay(buffer);
+			setFocusOnText();
 		}
 		System::Void btn_0_Click(System::Object^  sender, System::EventArgs^  e) {
 			pushSymbol("0");
 			setDisplay();
+			setFocusOnText();
 		}
 		System::Void btn_1_Click(System::Object^  sender, System::EventArgs^  e) {
 			pushSymbol("1");
 			setDisplay();
+			setFocusOnText();
 		}
 		System::Void btn_2_Click(System::Object^  sender, System::EventArgs^  e) {
 			pushSymbol("2");
 			setDisplay();
+			setFocusOnText();
 		}
 		System::Void btn_3_Click(System::Object^  sender, System::EventArgs^  e) {
 			pushSymbol("3");
 			setDisplay();
+			setFocusOnText();
 		}
 		System::Void btn_4_Click(System::Object^  sender, System::EventArgs^  e) {
 			pushSymbol("4");
 			setDisplay();
+			setFocusOnText();
 		}
 		System::Void btn_5_Click(System::Object^  sender, System::EventArgs^  e) {
 			pushSymbol("5");
 			setDisplay();
+			setFocusOnText();
 		}
 		System::Void btn_6_Click(System::Object^  sender, System::EventArgs^  e) {
 			pushSymbol("6");
 			setDisplay();
+			setFocusOnText();
 		}
 		System::Void btn_7_Click(System::Object^  sender, System::EventArgs^  e) {
 			pushSymbol("7");
 			setDisplay();
+			setFocusOnText();
 		}
 		System::Void btn_8_Click(System::Object^  sender, System::EventArgs^  e) {
 			pushSymbol("8");
 			setDisplay();
+			setFocusOnText();
 		}
 		System::Void btn_9_Click(System::Object^  sender, System::EventArgs^  e) {
 			pushSymbol("9");
 			setDisplay();
+			setFocusOnText();
 		}
 		System::Void btn_dot_Click(System::Object^  sender, System::EventArgs^  e) {
 			pushSymbol(".", true);
 			setDisplay();
+			setFocusOnText();
 		}
 		System::Void btn_perc_Click(System::Object^  sender, System::EventArgs^  e) {
 			pushSymbol("%", true);
 			setDisplay();
+			setFocusOnText();
 		}
 
 		System::Void textAux_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
-			this->SelectNextControl((Control^)sender, true, true, true, true);
-			
+			//this->SelectNextControl((Control^)sender, true, true, true, true);
 			char buffer[20];
 			std::sprintf(buffer, "%d", e->KeyCode);
-			if (e->KeyCode == Keys::Delete || e->KeyCode == Keys::Back)
-				aviso(buffer);
-			else {
+			if (e->KeyCode == Keys::Back) {
+				popRightDisplayStack();
+				if (getDisplayStack().empty())
+					setDisplay("0");
+				else
+					setDisplay();
+			} else if (e->KeyCode == Keys::Delete) {
+				popLeftDisplayStack();
+				if (getDisplayStack().empty())
+					setDisplay("0");
+				else
+					setDisplay();
+			} else {
 				char key;
 				std::sprintf(&key, "%c", e->KeyCode);
 				if (key >= 96 && key <= 105) {
@@ -832,7 +864,23 @@ namespace Calculadora {
 			}
 		}
 		System::Void display_Click(System::Object^  sender, System::EventArgs^  e) {
-			this->BeginInvoke(gcnew MethodInvoker(this, &FormCalc::SetFocusOnTextAux));
+			setFocusOnText();
+		}
+		System::Void btn_back_Click(System::Object^  sender, System::EventArgs^  e) {
+			popRightDisplayStack();
+			if (getDisplayStack().empty())
+				setDisplay("0");
+			else
+				setDisplay();
+			setFocusOnText();
+		}
+		System::Void btn_del_Click(System::Object^  sender, System::EventArgs^  e) {
+			popLeftDisplayStack();
+			if (getDisplayStack().empty())
+				setDisplay("0");
+			else
+				setDisplay();
+			setFocusOnText();
 		}
 };
 }

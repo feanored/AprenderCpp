@@ -87,16 +87,26 @@ namespace Calculadora{
 
 	void pushToDisplayStack(const std::string& ch) {
 		std::string display = getDisplayStack();
+		if (display.size() >= _DISPLAY_MAX)
+			return;
 		display += ch;
 		setDisplayStack(display);
 	}
 
 	void popRightDisplayStack() {
-
+		std::string display = getDisplayStack();	    
+		if (!display.empty()) {
+			display.erase(display.end() - 1);
+		}
+		setDisplayStack(display);
 	}
 
 	void popLeftDisplayStack() {
-
+		std::string display = getDisplayStack();
+		if (!display.empty()) {
+			display.erase(display.begin());
+		}
+		setDisplayStack(display);
 	}
 
 	void clearDisplayStack() {

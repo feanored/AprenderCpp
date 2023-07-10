@@ -16,3 +16,4 @@ using namespace std;
 const unsigned int _BACKSPACE = 8;
 const unsigned int _DELETE = 46;
 const unsigned int _EQUALS = 61;
+const size_t _DISPLAY_MAX = 18;
