@@ -2,7 +2,7 @@
 \brief Estudos.cpp : Defines the entry point for the console application.
 \author Eduardo Galvani Massino
 */
-//#define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
+#define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
 #include <iostream>
 #include <conio.h>
 #include "Candidatos.hpp"
@@ -29,6 +29,9 @@ void main_ponteiros() {
     // Esses operadores retornam os tipos primitivos, acessíveis apenas pelo .
 	//std::cout << " Votos para Bozo: " << (++*bozo).getVotos() << std::endl;
 	//std::cout << " Votos para Lula: " << (*lula)++.getVotos() << std::endl;
+
+	std::cout << " Votos para Bozo (auditoria): " << bozo->getVotos() << std::endl;
+	std::cout << " Votos para Lula (auditoria): " << lula->getVotos() << std::endl;
 }
 
 /*!
@@ -48,6 +51,9 @@ void main_variaveis() {
     // Notação polonesa exige os () na prefixa, pois é por padrão posfixa
     std::cout << " Votos para Bozo: " << (++bozo).getVotos() << std::endl;
     std::cout << " Votos para Lula: " << lula++.getVotos() << std::endl;
+
+	std::cout << " Votos para Bozo (auditoria): " << bozo.getVotos() << std::endl;
+	std::cout << " Votos para Lula (auditoria): " << lula.getVotos() << std::endl;
 }
 
 int main() {

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <conio.h>
 
 using namespace std;
 
@@ -49,5 +50,6 @@ int main() {
 	print(ctb);
 
 	linha();
+	getch();
 	return 0;
 }
