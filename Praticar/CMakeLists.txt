@@ -6,3 +6,5 @@ project(Praticar)
 add_executable(const_enum const_enum.cpp)
 
 add_executable(construtores construtores.cpp)
+
+add_executable(referencias referencias.cpp)
