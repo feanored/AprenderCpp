@@ -23,6 +23,9 @@ public:
 			static_cast<const TextBlock&>(*this)[pos]
 		);
 	}
+
+  // Constantes de classe, melhor prática
+  enum { n = 7 };
 };
 
 
@@ -50,6 +53,8 @@ int main() {
 	print(ctb);
 
 	linha();
-	getch();
+
+  std::cout << "Constante n: " << TextBlock::n << std::endl;
+  getch();
 	return 0;
 }

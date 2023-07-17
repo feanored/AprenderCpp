@@ -1,3 +1,0 @@
-C:/Users/eduar/Documents/Visual Studio 2008/Projects/Estudos/Praticas/CMakeFiles/Praticas-1.dir
-C:/Users/eduar/Documents/Visual Studio 2008/Projects/Estudos/Praticas/CMakeFiles/ALL_BUILD.dir
-C:/Users/eduar/Documents/Visual Studio 2008/Projects/Estudos/Praticas/CMakeFiles/ZERO_CHECK.dir
