@@ -13,54 +13,54 @@ using namespace std;
 \brief Versão com ponteiros
 */
 void main_ponteiros() {
-    Bozo *bozo = new Bozo();
-    Lula *lula = new Lula();
+  Bozo *bozo = new Bozo();
+  Lula *lula = new Lula();
 
-    // votacao justa
-    ++*bozo;
-    (*bozo)++;
-    ++*bozo;
-    (*lula)++;
-    ++*lula;
+  // votacao justa
+  ++*bozo;
+  (*bozo)++;
+  ++*bozo;
+  (*lula)++;
+  ++*lula;
 
-	std::cout << " Votos para Bozo: " << bozo->getVotos() << std::endl;
-	std::cout << " Votos para Lula: " << lula->getVotos() << std::endl;
+  std::cout << " Votos para Bozo: " << bozo->getVotos() << std::endl;
+  std::cout << " Votos para Lula: " << lula->getVotos() << std::endl;
 
-    // Esses operadores retornam os tipos primitivos, acessíveis apenas pelo .
-	//std::cout << " Votos para Bozo: " << (++*bozo).getVotos() << std::endl;
-	//std::cout << " Votos para Lula: " << (*lula)++.getVotos() << std::endl;
+  // Esses operadores retornam os tipos primitivos, acessíveis apenas pelo .
+  //std::cout << " Votos para Bozo: " << (++*bozo).getVotos() << std::endl;
+  //std::cout << " Votos para Lula: " << (*lula)++.getVotos() << std::endl;
 
-	std::cout << " Votos para Bozo (auditoria): " << bozo->getVotos() << std::endl;
-	std::cout << " Votos para Lula (auditoria): " << lula->getVotos() << std::endl;
+  std::cout << " Votos para Bozo (auditoria): " << bozo->getVotos() << std::endl;
+  std::cout << " Votos para Lula (auditoria): " << lula->getVotos() << std::endl;
 }
 
 /*!
 \brief Versão com variáveis
 */
 void main_variaveis() {
-    Bozo bozo;
-    Lula lula;
+  Bozo bozo;
+  Lula lula;
 
-    // votacao justa
-    ++bozo;
-    bozo++;
-    ++bozo;
-    lula++;
-    ++lula;
+  // votacao justa
+  ++bozo;
+  bozo++;
+  ++bozo;
+  lula++;
+  ++lula;
 
-    // Notação polonesa exige os () na prefixa, pois é por padrão posfixa
-    std::cout << " Votos para Bozo: " << (++bozo).getVotos() << std::endl;
-    std::cout << " Votos para Lula: " << lula++.getVotos() << std::endl;
+  // Notação polonesa exige os () na prefixa, pois é por padrão posfixa
+  std::cout << " Votos para Bozo: " << (++bozo).getVotos() << std::endl;
+  std::cout << " Votos para Lula: " << lula++.getVotos() << std::endl;
 
-	std::cout << " Votos para Bozo (auditoria): " << bozo.getVotos() << std::endl;
-	std::cout << " Votos para Lula (auditoria): " << lula.getVotos() << std::endl;
+  std::cout << " Votos para Bozo (auditoria): " << bozo.getVotos() << std::endl;
+  std::cout << " Votos para Lula (auditoria): " << lula.getVotos() << std::endl;
 }
 
 int main() {
-    std::cout << "-- Urna eletronica --" << std::endl;
+  std::cout << "-- Urna eletronica --" << std::endl;
 
-    main_ponteiros();
+  main_ponteiros();
 
-    std::cout << std::endl << "<Pressione qualquer tecla para sair>";
-    return _getch();
+  std::cout << std::endl << "<Pressione qualquer tecla para sair>";
+  return _getch();
 }
