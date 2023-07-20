@@ -17,9 +17,10 @@ int main() {
 			double angleRadians = std::atan2(y, x);
 			double angleDegrees = angleRadians * 180.0 / M_PI;
 
-			printf("x = %10.6f, y = %10.6f", x, y);
+			printf("(%10.6f, %10.6f)", x, y);
 			printf("\t\t rad = %9.6f", angleRadians); 
-			printf("\t\t angle = %9.3f \n", angleDegrees);
+			printf("\t\t angle = %9.3f", angleDegrees);
+			std::cout << std::endl;
 		}
     }
 
