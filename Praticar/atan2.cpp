@@ -3,6 +3,8 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
+const int _BUFSIZE = 20;
+
 int main() {
   const int numPoints = 10;
   const double minValue = -.00100;
@@ -14,13 +16,17 @@ int main() {
     for (int j = 0; j < numPoints; ++j) {
       double y = minValue + j * stepSize;
 
-      double angleRadians = atan2(y, x);
-      double angleDegrees = angleRadians * 180.0 / M_PI;
+      double radians = atan2(y, x);
+      double angle = radians * 180.0 / M_PI;
 
-      printf("(%10.6f, %10.6f)", x, y);
-      printf("\t\t rad = %9.6f", angleRadians); 
-      printf("\t\t angle = %9.3f", angleDegrees);
-      std::cout << std::endl;
+      char buffer[_BUFSIZE], out[_BUFSIZE * 4];
+      std::sprintf(buffer, "(%10.6f, %10.6f)", x, y);
+      std::strcpy(out, buffer);
+      std::sprintf(buffer, "\t\t rad = %9.6f", radians);
+      std::strcat(out, buffer);
+      std::sprintf(buffer, "\t\t angle = %9.3f", angle);
+      std::strcat(out, buffer);
+      std::cout << out << std::endl;
     }
   }
 
