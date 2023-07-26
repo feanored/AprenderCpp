@@ -1,12 +1,16 @@
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+
 #include <iostream>
 #include <conio.h>
-#define _USE_MATH_DEFINES
 #include <math.h>
+#include <string.h>
 
-const int _BUFSIZE = 20;
 
 int main() {
-  const int numPoints = 10;
+  const int _BUFSIZE = 100;
+
+  const int numPoints = 25;
   const double minValue = -.00100;
   const double maxValue = .00100;
   const double stepSize = (maxValue - minValue) / (numPoints - 1);
@@ -19,17 +23,16 @@ int main() {
       double radians = atan2(y, x);
       double angle = radians * 180.0 / M_PI;
 
-      char buffer[_BUFSIZE], out[_BUFSIZE * 4];
+      char* buffer = new char[_BUFSIZE];
       std::sprintf(buffer, "(%10.6f, %10.6f)", x, y);
-      std::strcpy(out, buffer);
-      std::sprintf(buffer, "\t\t rad = %9.6f", radians);
-      std::strcat(out, buffer);
-      std::sprintf(buffer, "\t\t angle = %9.3f", angle);
-      std::strcat(out, buffer);
-      std::cout << out << std::endl;
+      std::sprintf(buffer + strlen(buffer), "\t\t rad = %12.6e", radians);
+      std::sprintf(buffer + strlen(buffer), "\t\t angle = %12.3e", angle);
+
+      std::cout << buffer << std::endl;
+      delete[] buffer;
+      fflush(stdout);
     }
   }
-
-  _getch();
-  return 0;
+  
+  return !_getch();
 }

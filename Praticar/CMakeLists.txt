@@ -10,3 +10,5 @@ add_executable(construtores construtores.cpp)
 add_executable(referencias referencias.cpp)
 
 add_executable(atan2 atan2.cpp)
+
+add_executable(notation notation.cpp)
