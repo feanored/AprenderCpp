@@ -25,7 +25,7 @@ int main() {
 
       char* buffer = new char[_BUFSIZE];
       std::sprintf(buffer, "(%10.6f, %10.6f)", x, y);
-      std::sprintf(buffer + strlen(buffer), "\t\t rad = %12.6e", radians);
+      std::sprintf(buffer + strlen(buffer), "\t rad = %12.6e", radians);
       std::sprintf(buffer + strlen(buffer), "\t\t angle = %12.3e", angle);
 
       std::cout << buffer << std::endl;
