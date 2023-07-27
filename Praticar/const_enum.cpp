@@ -55,6 +55,5 @@ int main() {
 	linha();
 
   std::cout << "Constante n: " << TextBlock::n << std::endl;
-  getch();
-	return 0;
+  return !_getch();
 }
