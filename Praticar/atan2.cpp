@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include <conio.h>
-#include <math.h>
 #include <string.h>
+#include <cmath>
 
 
 int main() {
@@ -15,23 +15,20 @@ int main() {
   const double maxValue = .00100;
   const double stepSize = (maxValue - minValue) / (numPoints - 1);
 
-  for (int i = 0; i < numPoints; ++i) {
-    double x = minValue + i * stepSize;
-    for (int j = 0; j < numPoints; ++j) {
-      double y = minValue + j * stepSize;
+  double x = maxValue; // um valor pra x é o suficiente
+  for (int j = 0; j < numPoints; ++j) {
+    double y = minValue + j * stepSize;
 
-      double radians = atan2(y, x);
-      double angle = radians * 180.0 / M_PI;
+    double radians = atan2(y, x);
+    double angle = radians * 180.0 / M_PI;
 
-      char* buffer = new char[_BUFSIZE];
-      std::sprintf(buffer, "(%10.6f, %10.6f)", x, y);
-      std::sprintf(buffer + strlen(buffer), "\t rad = %12.6e", radians);
-      std::sprintf(buffer + strlen(buffer), "\t\t angle = %12.3e", angle);
+    char* buffer = new char[_BUFSIZE];
+    std::sprintf(buffer, "(%10.6f, %10.6f)", x, y);
+    std::sprintf(buffer + strlen(buffer), "\t rad = %15.6e", radians);
+    std::sprintf(buffer + strlen(buffer), "\t\t angle = %6.1f", angle);
 
-      std::cout << buffer << std::endl;
-      delete[] buffer;
-      fflush(stdout);
-    }
+    std::cout << buffer << std::endl;
+    delete[] buffer;
   }
   
   return !_getch();
