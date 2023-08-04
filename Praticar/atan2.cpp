@@ -7,7 +7,7 @@
 #include <cmath>
 
 
-int main() {
+int main(int argc) {
   const int _BUFSIZE = 100;
 
   const int numPoints = 25;
@@ -27,9 +27,11 @@ int main() {
     std::sprintf(buffer + strlen(buffer), "\t rad = %15.6e", radians);
     std::sprintf(buffer + strlen(buffer), "\t\t angle = %6.1f", angle);
 
-    std::cout << buffer << std::endl;
+    std::cout << buffer;
     delete[] buffer;
+    if (j < numPoints - 1)
+      std::cout << std::endl;
   }
   
-  return !_getch();
+  return (argc > 1) ? 0 : !_getch();
 }
